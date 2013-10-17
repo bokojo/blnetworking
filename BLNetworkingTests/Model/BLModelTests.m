@@ -48,13 +48,13 @@
     XCTAssertTrue(validateClass([NSString class], @"missingkey", dictionary, YES), @"Improperly rejected nil value after YES passed to canBeNil option.");
 
     // Requesting non-existant key, disallowing nil
-    XCTAssertFalse(validateClass([NSString class], @"missingkey", dictionary, NO), @"Improperly rejected nil value after YES passed to canBeNil option.");
+    XCTAssertFalse(validateClass([NSString class], @"missingkey", dictionary, NO), @"Improperly allowed nil value after NO passed to canBeNil option.");
     
     // Requesting NSNull, allowing nil
     XCTAssertTrue(validateClass([NSString class], @"null", dictionary, YES), @"Improperly rejected nil value after YES passed to canBeNil option.");
     
     // Requesting NSNull, disallowing nil
-    XCTAssertFalse(validateClass([NSString class], @"null", dictionary, NO), @"Improperly rejected nil value after YES passed to canBeNil option.");
+    XCTAssertFalse(validateClass([NSString class], @"null", dictionary, NO), @"Improperly allowed nil value after NO passed to canBeNil option.");
 
 }
 
