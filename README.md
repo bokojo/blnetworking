@@ -31,7 +31,7 @@ INSTALLATION
 
 9. Now we need to add the header search path to your main project.  Click on the top Project icon in the XCode file manager, select Build Settings from the top menu bar of the editor panel, and search for User Header Search Path.  This should be empty in a new project.
 
-10. Select the empty field and add two records: $(inherited) and $(SRCROOT)/<your blnetwork location starting from the project root>
+10. Select the empty field and add two records: $(inherited) and $(SRCROOT)/_YOUR_BLNETWORK_LOCATION
 
 11. Be sure that your values now appear in the settings list once you click off the field editor.
 
