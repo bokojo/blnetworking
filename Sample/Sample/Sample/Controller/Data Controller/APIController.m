@@ -4,7 +4,7 @@
 //
 
 #import "APIController.h"
-#import "Contact.h"
+#import "Thing.h"
 
 @implementation APIController
 
@@ -23,22 +23,22 @@
 
 #pragma mark - RTAPIController
 
-- (BOOL)getContactsWithSuccess: (apiSuccessBlock)success failure: (apiFailureBlock)failure
+- (BOOL)getThingsWithSuccess: (apiSuccessBlock)success failure: (apiFailureBlock)failure
 {   
     // Return blocks
     NSDictionary* blocks = [self completionBlocksWithSuccess:success
                                                      failure:failure
-                                                  modelClass:[Contact class]
+                                                  modelClass:[Thing class]
                                         managedObjectContext:nil
-                                     successNotificationName:kNotificationAPIControllerGetContactsSucceeded
-                                     failureNotificationName:kNotificationAPIControllerGetContactsFailed
+                                     successNotificationName:kNotificationAPIControllerGetThingsSucceeded
+                                     failureNotificationName:kNotificationAPIControllerGetThingsFailed
                                                   atomicLock:nil
-                                                responsePath:@"contacts"
+                                                responsePath:@"things"
                                                        queue:nil];
     
     
     // AFSessionManager HTTP Method
-    [self GET:@"contacts"
+    [self GET:@"things"
    parameters:nil
       success:blocks[kBLAPIControllerSuccessBlockKey]
       failure:blocks[kBLAPIControllerFailureBlockKey]];

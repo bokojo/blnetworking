@@ -25,7 +25,7 @@
 		B444F0E41816DC0300A7F97F /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B444F0E01816DC0300A7F97F /* MasterViewController.m */; };
 		B444F1251816DC9100A7F97F /* libBLNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B444F1241816DC9100A7F97F /* libBLNetworking.a */; };
 		B444F1281816DE6F00A7F97F /* APIController.m in Sources */ = {isa = PBXBuildFile; fileRef = B444F1271816DE6F00A7F97F /* APIController.m */; };
-		B444F12B1816E0E100A7F97F /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = B444F12A1816E0E100A7F97F /* Contact.m */; };
+		B444F12B1816E0E100A7F97F /* Thing.m in Sources */ = {isa = PBXBuildFile; fileRef = B444F12A1816E0E100A7F97F /* Thing.m */; };
 		B444F1321816E13400A7F97F /* ContactTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B444F1301816E13400A7F97F /* ContactTests.m */; };
 /* End PBXBuildFile section */
 
@@ -63,11 +63,11 @@
 		B444F0DE1816DC0300A7F97F /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		B444F0DF1816DC0300A7F97F /* MasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		B444F0E01816DC0300A7F97F /* MasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		B444F1241816DC9100A7F97F /* libBLNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libBLNetworking.a; path = "ThirdParty/blnetworking/build/Debug-iphoneos/libBLNetworking.a"; sourceTree = "<group>"; };
+		B444F1241816DC9100A7F97F /* libBLNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBLNetworking.a; path = "ThirdParty/blnetworking/build/Debug-iphoneos/libBLNetworking.a"; sourceTree = "<group>"; };
 		B444F1261816DE6F00A7F97F /* APIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIController.h; sourceTree = "<group>"; };
 		B444F1271816DE6F00A7F97F /* APIController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIController.m; sourceTree = "<group>"; };
-		B444F1291816E0E100A7F97F /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
-		B444F12A1816E0E100A7F97F /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		B444F1291816E0E100A7F97F /* Thing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Thing.h; sourceTree = "<group>"; };
+		B444F12A1816E0E100A7F97F /* Thing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Thing.m; sourceTree = "<group>"; };
 		B444F1301816E13400A7F97F /* ContactTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -209,8 +209,8 @@
 		B444F0E11816DC0300A7F97F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B444F1291816E0E100A7F97F /* Contact.h */,
-				B444F12A1816E0E100A7F97F /* Contact.m */,
+				B444F1291816E0E100A7F97F /* Thing.h */,
+				B444F12A1816E0E100A7F97F /* Thing.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -396,7 +396,7 @@
 				B444F1281816DE6F00A7F97F /* APIController.m in Sources */,
 				B444F0B31816DB3400A7F97F /* AppDelegate.m in Sources */,
 				B444F0AF1816DB3400A7F97F /* main.m in Sources */,
-				B444F12B1816E0E100A7F97F /* Contact.m in Sources */,
+				B444F12B1816E0E100A7F97F /* Thing.m in Sources */,
 				B444F0E31816DC0300A7F97F /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

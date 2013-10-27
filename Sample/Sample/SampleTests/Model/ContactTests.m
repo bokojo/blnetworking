@@ -3,7 +3,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "Contact.h"
+#import "Thing.h"
 
 @interface RTContactTests : XCTestCase
 {
@@ -62,13 +62,13 @@
 
 - (void)testRTContactInitWithDictionary
 {
-    id obj = [[Contact alloc] initWithDictionary:_jsonExample];
+    id obj = [[Thing alloc] initWithDictionary:_jsonExample];
     XCTAssert([obj isKindOfClass:[Contact class]], @"obj: %@", obj);
 }
 
 - (void)testRTContactInitWithDictionaryIntoManagedObjectContext
 {
-    id obj = [[Contact alloc] initWithDictionary:_jsonExample intoManagedObjectContext:nil];
+    id obj = [[Thing alloc] initWithDictionary:_jsonExample intoManagedObjectContext:nil];
     XCTAssert([obj isKindOfClass:[Contact class]], @"obj: %@", obj);
     
     // TODO: test for core data setup
@@ -80,7 +80,7 @@
     NSString* name = [_jsonExample nullStrippedObjectForKey:kContactAPIKeyName];
     NSString* company = [_jsonExample nullStrippedObjectForKey:kContactAPIKeyCompany];
    
-    Contact* obj = [[Contact alloc] initWithContactID:contactID name:name company:company];
+    Thing* obj = [[Thing alloc] initWithContactID:contactID name:name company:company];
     
     XCTAssert(obj.contactID == contactID, @"expect: %d received: %d", (int)contactID, (int)obj.contactID);
     XCTAssert([obj.name isEqualToString:name], @"name: %@", obj.name);

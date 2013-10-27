@@ -6,13 +6,13 @@
 
 // Notifications
 
-static NSString* const kNotificationRTAPIControllerGetContactsSucceeded = @"kNotificationRTAPIControllerGetContactsSucceeded";
-static NSString* const kNotificationRTAPIControllerGetContactsFailed = @"kNotificationRTAPIControllerGetContactsFailed";
+static NSString* const kNotificationRTAPIControllerGetThingsSucceeded = @"kNotificationRTAPIControllerGetThingsSucceeded";
+static NSString* const kNotificationRTAPIControllerGetThingsFailed = @"kNotificationRTAPIControllerGetThingsFailed";
 
 @interface APIController : BLAPIController
 
 + (APIController *)sharedController;
 
-- (BOOL)getContactsWithSuccess: (void(^)(NSArray* contacts))success failure: (void(^)(NSError* error))failure;
+- (BOOL)getThingsWithSuccess: (void(^)(NSArray* Things))success failure: (void(^)(NSError* error))failure;
 
 @end
