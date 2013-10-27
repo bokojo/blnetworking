@@ -536,7 +536,7 @@
 					XCTest,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../Pods/Headers/**";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../Pods/Headers/** $(SRCROOT)/Pods/Headers/**";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -565,7 +565,7 @@
 					XCTest,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../Pods/Headers/**";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../Pods/Headers/** $(SRCROOT)/Pods/Headers/**";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;

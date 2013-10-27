@@ -74,9 +74,9 @@
             for (NSString* item in components)
             {
                 if ([components indexOfObject:item] == 0)
-                    marker = [_responseObject objectForKey:item];
+                    marker = _responseObject[item];
                 else
-                    marker = [marker objectForKey:item];
+                    marker = marker[item];
                     
                 if (![marker isKindOfClass:[NSDictionary class]])
                     break;
@@ -102,7 +102,7 @@
     // An invalid object was delivered, but AFHTTPRequestOperation didn't fail
     // could be a 204 No Content; or some other non-terminal error representing an empty set
     else
-        responseArray = [NSArray array];
+        responseArray = @[];
     
     // Check cancellation again
     if ([self isCancelled])

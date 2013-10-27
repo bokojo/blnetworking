@@ -39,7 +39,7 @@ static BOOL validateClass(Class _class, NSString* _key, NSDictionary* _dict, BOO
 {
     BOOL retVal = YES;
     
-    id obj = [_dict objectForKey: _key];
+    id obj = _dict[_key];
     if ((! obj || [obj isKindOfClass:[NSNull class]]) && !_canBeNil)
        retVal = NO;
     
@@ -53,7 +53,7 @@ static BOOL validateEnum(int _enumMax, NSString* _key, NSDictionary* _dict)
 {
     BOOL retVal = YES;
 
-    id obj = [_dict objectForKey:_key];
+    id obj = _dict[_key];
     int value = -99; // error state
 
     if (! [obj isKindOfClass:[NSNumber class]])
@@ -74,7 +74,7 @@ static BOOL validateBool(NSString* _key, NSDictionary* _dict, BOOL _canBeNSStrin
 {
     BOOL retVal = NO;
     
-    id obj = [_dict objectForKey:_key];
+    id obj = _dict[_key];
     
     if (_canBeNil && !obj)
         retVal = YES;

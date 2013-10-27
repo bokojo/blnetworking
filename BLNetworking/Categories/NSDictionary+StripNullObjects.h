@@ -7,8 +7,12 @@
 
 #import <Foundation/Foundation.h>
 
+// get an NSNull instead of a nil for an obj.
+id nilProtectedValueFromObject(id obj);
+
 @interface NSDictionary (StripNullObjects)
 
+// get a nil instead of an NSNull in the dictionary.
 - (id)nullStrippedObjectForKey: (NSString *)key;
 
 @end

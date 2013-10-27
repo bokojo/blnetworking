@@ -40,4 +40,12 @@
     XCTAssertNil(obj, @"obj: %@", obj);
 }
 
+- (void)testNilProtectedValueForKey
+{
+    id nothing = nil;
+    id obj = nilProtectedValueFromObject(nothing);
+    
+    XCTAssert(obj == [NSNull null], @"obj: %@", obj);
+}
+
 @end
