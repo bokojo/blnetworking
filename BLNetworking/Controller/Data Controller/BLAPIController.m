@@ -74,6 +74,7 @@
     {
         // Provides extra content in userInfo dict of NSError on ^failure() blocks
         _responseSerializer = [BLJSONResponseSerializer serializer];
+        
         _backgroundQueue = [[NSOperationQueue alloc] init];
     }
     return self;

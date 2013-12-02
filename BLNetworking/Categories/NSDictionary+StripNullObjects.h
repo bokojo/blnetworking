@@ -15,4 +15,6 @@ id nilProtectedValueFromObject(id obj);
 // get a nil instead of an NSNull in the dictionary.
 - (id)nullStrippedObjectForKey: (NSString *)key;
 
+- (NSDictionary *)nullStrippedDictionary;
+
 @end

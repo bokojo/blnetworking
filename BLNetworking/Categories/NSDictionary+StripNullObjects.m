@@ -28,4 +28,16 @@ id nilProtectedValueFromObject(id obj)
     return obj;
 }
 
+- (NSDictionary *)nullStrippedDictionary
+{
+    NSMutableDictionary* outDict = [self mutableCopy];
+    for (NSString* key in self)
+    {
+        if ([outDict valueForKey:key] == [NSNull null])
+            [outDict removeObjectForKey:key];
+    }
+    return [outDict copy];
+}
+
+
 @end
