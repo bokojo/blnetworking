@@ -77,5 +77,4 @@ typedef void (^apiFailureBlock)(NSError*);
 
 @property (nonatomic, strong) NSOperationQueue* backgroundQueue;
 @property (nonatomic, assign) BOOL traceEnabled;
-
 @end

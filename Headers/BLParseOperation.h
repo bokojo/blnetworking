@@ -11,8 +11,6 @@
 
 @interface BLParseOperation : NSOperation
 
-@property (nonatomic, assign) BOOL traceEnabled;
-
 - (id)initWithResponseObject: (id)responseObject path: (NSString *)path  modelClass:(Class <BLModel>)model managedObjectContext: (NSManagedObjectContext *)moc successNote: (NSString *)successNote successBlock: (void (^)(NSArray* array))success lock:(BOOL *)lock;
 
 @end

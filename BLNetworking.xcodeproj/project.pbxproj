@@ -19,14 +19,14 @@
 		B420B1D2180EFF8700145052 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B420B1D1180EFF8700145052 /* CoreData.framework */; };
 		B420B1DB180F005000145052 /* NSDictionary+StripNullObjectsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B420B1DA180F005000145052 /* NSDictionary+StripNullObjectsTests.m */; };
 		B420B1DC180F03B200145052 /* NSDictionary+StripNullObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = B420B1C2180EFEEF00145052 /* NSDictionary+StripNullObjects.m */; };
-		B4A7FE9E18105D9F00BE2934 /* NSDictionary+StripNullObjects.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B420B1C1180EFEEF00145052 /* NSDictionary+StripNullObjects.h */; };
-		B4A7FE9F18105D9F00BE2934 /* BLAPIController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B420B1C5180EFEEF00145052 /* BLAPIController.h */; };
-		B4A7FEA018105D9F00BE2934 /* BLJSONResponseSerializer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B420B1C7180EFEEF00145052 /* BLJSONResponseSerializer.h */; };
-		B4A7FEA118105D9F00BE2934 /* BLParseOperation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B420B1C9180EFEEF00145052 /* BLParseOperation.h */; };
-		B4A7FEA218105D9F00BE2934 /* BLModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B420B1CC180EFEEF00145052 /* BLModel.h */; };
-		B4A7FEA318105D9F00BE2934 /* BLNetworking.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4A7FE9B18105CCD00BE2934 /* BLNetworking.h */; };
+		B4CA34CB19197D7E0063B97A /* NSDictionary+StripNullObjects.h in Headers */ = {isa = PBXBuildFile; fileRef = B420B1C1180EFEEF00145052 /* NSDictionary+StripNullObjects.h */; };
+		B4CA34CC19197D7E0063B97A /* BLAPIController.h in Headers */ = {isa = PBXBuildFile; fileRef = B420B1C5180EFEEF00145052 /* BLAPIController.h */; };
+		B4CA34CD19197D7E0063B97A /* BLJSONResponseSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = B420B1C7180EFEEF00145052 /* BLJSONResponseSerializer.h */; };
+		B4CA34CE19197D7E0063B97A /* BLParseOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = B420B1C9180EFEEF00145052 /* BLParseOperation.h */; };
+		B4CA34CF19197D7E0063B97A /* BLModel.h in Headers */ = {isa = PBXBuildFile; fileRef = B420B1CC180EFEEF00145052 /* BLModel.h */; };
+		B4CA34D019197D7E0063B97A /* BLNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = B4A7FE9B18105CCD00BE2934 /* BLNetworking.h */; };
+		B4CA34D119197D7E0063B97A /* BLMockModel.h in Headers */ = {isa = PBXBuildFile; fileRef = B4F02F34181064A200C25606 /* BLMockModel.h */; };
 		B4F02F36181064A200C25606 /* BLModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F02F35181064A200C25606 /* BLModelTests.m */; };
-		B4F02F37181064AD00C25606 /* BLMockModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B4F02F34181064A200C25606 /* BLMockModel.h */; };
 		B4FC568F180F13A7004C5C8A /* BLAPIControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4FC568E180F13A7004C5C8A /* BLAPIControllerTests.m */; };
 		B4FC5690180F146C004C5C8A /* BLAPIController.m in Sources */ = {isa = PBXBuildFile; fileRef = B420B1C6180EFEEF00145052 /* BLAPIController.m */; };
 		B4FC5691180F146F004C5C8A /* BLJSONResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B420B1C8180EFEEF00145052 /* BLJSONResponseSerializer.m */; };
@@ -45,25 +45,6 @@
 			remoteInfo = BLNetworking;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		B4A7FE9D18105D8600BE2934 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(SRCROOT)/Headers";
-			dstSubfolderSpec = 0;
-			files = (
-				B4F02F37181064AD00C25606 /* BLMockModel.h in CopyFiles */,
-				B4A7FE9E18105D9F00BE2934 /* NSDictionary+StripNullObjects.h in CopyFiles */,
-				B4A7FE9F18105D9F00BE2934 /* BLAPIController.h in CopyFiles */,
-				B4A7FEA018105D9F00BE2934 /* BLJSONResponseSerializer.h in CopyFiles */,
-				B4A7FEA118105D9F00BE2934 /* BLParseOperation.h in CopyFiles */,
-				B4A7FEA218105D9F00BE2934 /* BLModel.h in CopyFiles */,
-				B4A7FEA318105D9F00BE2934 /* BLNetworking.h in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B420B197180EFC0F00145052 /* libBLNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBLNetworking.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -270,6 +251,23 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		B4CA34CA19197D620063B97A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4CA34CB19197D7E0063B97A /* NSDictionary+StripNullObjects.h in Headers */,
+				B4CA34CC19197D7E0063B97A /* BLAPIController.h in Headers */,
+				B4CA34CD19197D7E0063B97A /* BLJSONResponseSerializer.h in Headers */,
+				B4CA34CE19197D7E0063B97A /* BLParseOperation.h in Headers */,
+				B4CA34CF19197D7E0063B97A /* BLModel.h in Headers */,
+				B4CA34D019197D7E0063B97A /* BLNetworking.h in Headers */,
+				B4CA34D119197D7E0063B97A /* BLMockModel.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		B420B196180EFC0F00145052 /* BLNetworking */ = {
 			isa = PBXNativeTarget;
@@ -277,7 +275,7 @@
 			buildPhases = (
 				B420B193180EFC0F00145052 /* Sources */,
 				B420B194180EFC0F00145052 /* Frameworks */,
-				B4A7FE9D18105D8600BE2934 /* CopyFiles */,
+				B4CA34CA19197D620063B97A /* Headers */,
 			);
 			buildRules = (
 			);
@@ -312,7 +310,7 @@
 		B420B18F180EFC0F00145052 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Buffalo Ladybug LLC";
 			};
 			buildConfigurationList = B420B192180EFC0F00145052 /* Build configuration list for PBXProject "BLNetworking" */;
@@ -398,7 +396,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -429,6 +426,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../Pods/Headers/**";
 			};
 			name = Debug;
@@ -437,7 +435,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -461,6 +458,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../Pods/Headers/**";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -511,7 +509,6 @@
 		B420B1BE180EFC0F00145052 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -544,7 +541,6 @@
 		B420B1BF180EFC0F00145052 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

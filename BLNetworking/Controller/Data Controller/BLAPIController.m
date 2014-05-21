@@ -24,7 +24,14 @@
     
     afSuccessBlock newSuccess = ^(NSURLSessionDataTask *task, id responseObject) {
         
+        
         BLParseOperation* parseOp = [[BLParseOperation alloc] initWithResponseObject:responseObject path:path modelClass:model managedObjectContext:moc successNote:successNote successBlock:success lock:lock];
+        
+        if ([self traceEnabled])
+        {
+            NSLog(@"TraceEnabled: Data Task Successful");
+            parseOp.traceEnabled = YES;
+        }
         
         if (queue)
             [queue addOperation:parseOp];

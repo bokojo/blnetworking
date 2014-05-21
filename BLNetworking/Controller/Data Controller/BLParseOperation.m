@@ -56,6 +56,10 @@
         
         return;
     }
+    
+    if ([self traceEnabled])
+        NSLog(@"TraceEnabled: Parse Operation Started");
+    
     // Setup
         
     NSMutableArray* tempModels = [NSMutableArray array];
@@ -114,6 +118,10 @@
         return;
     }
     
+    if ([self traceEnabled])
+        NSLog(@"TraceEnabled: ParseOp: Found Objects");
+    
+    
     // Iterate and initialize models.  Models are <BLModel> so they conform to initWithDictionary:
     // or they conform to initWithDictionary:intoManagedObjectContext: in a CoreData system.  Provide a
     // NSManagedObjectContext to use that initializer.
@@ -130,6 +138,10 @@
         if (obj)
             [tempModels addObject:obj];
     }
+    
+    if ([self traceEnabled])
+        NSLog(@"TraceEnabled: ParseOp: Made NSObjects");
+    
         
     // Can still pass an empty array; check in ViewController.  Always an array.  
     _models = [NSArray arrayWithArray:tempModels];
@@ -168,6 +180,9 @@
 
 - (void)mainThreadDispatch
 {
+    if ([self traceEnabled])
+        NSLog(@"TraceEnabled: ParseOp: Final dispatch");
+    
     // Notify observers
     if (_successNote)
         [[NSNotificationCenter defaultCenter] postNotificationName:_successNote object:self userInfo:@{ @"models" : _models }];
