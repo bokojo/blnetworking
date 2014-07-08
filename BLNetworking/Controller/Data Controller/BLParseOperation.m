@@ -193,7 +193,7 @@
         // Is there a keyed subpath?  Path will terminate at the first array it hits
         if (path)
         {
-            NSArray* components = [_path componentsSeparatedByString:@"."];
+            NSArray* components = [path componentsSeparatedByString:@"."];
             id marker = nil;
             for (NSString* item in components)
             {
