@@ -19,12 +19,14 @@
     void (^_success)(NSArray *);
     BOOL* _lock;
     NSArray* _models;
+    NSString* _alertPath;
+    Class <BLModel> _alert;
 }
 @end
 
 @implementation BLParseOperation
 
-- (id)initWithResponseObject: (id)responseObject path: (NSString *)path  modelClass: (Class <BLModel>)model managedObjectContext: (NSManagedObjectContext *)moc successNote: (NSString *)successNote successBlock: (void (^)(NSArray* array))success lock:(BOOL *)lock
+- (id)initWithResponseObject: (id)responseObject path: (NSString *)path  modelClass: (Class <BLModel>)model managedObjectContext: (NSManagedObjectContext *)moc successNote: (NSString *)successNote successBlock: (void (^)(NSArray* array))success lock:(BOOL *)lock alertPath: (NSString *)alertPath alertClass: (Class <BLModel>)alert
 {
     self = [super init];
     if (self)
@@ -36,6 +38,8 @@
         _successNote = successNote;
         _success = success;
         _lock = lock;
+        _alertPath = alertPath;
+        _alert = alert;
     }
     return self;
 }
@@ -63,50 +67,37 @@
     // Setup
         
     NSMutableArray* tempModels = [NSMutableArray array];
-    id responseArray = nil;
-        
-    // Could be one object or many objects
-        
-    // Is it a dictionary or an array?
-    if ([_responseObject isKindOfClass:[NSDictionary class]])
+    NSArray* responseArray = [self arrayFromResponseObject:_responseObject path:_path];
+    
+    if ([self traceEnabled])
+        NSLog(@"TraceEnabled: ParseOp: Found Objects");
+    
+    
+    if ([self traceEnabled])
+        NSLog(@"TraceEnabled: Alert Check Started");
+    
+    if (_alert && _alertPath)
     {
-        // Is there a keyed subpath?  Path will terminate at the first array it hits
-        if (_path)
+        NSArray* alertsArray = [self arrayFromResponseObject:_responseObject path:_alertPath];
+        for (NSDictionary* alert in alertsArray)
         {
-            NSArray* components = [_path componentsSeparatedByString:@"."];
-            id marker = nil;
-            for (NSString* item in components)
+            id obj = nil;
+            if (_alert)
             {
-                if ([components indexOfObject:item] == 0)
-                    marker = _responseObject[item];
-                else
-                    marker = marker[item];
-                    
-                if (![marker isKindOfClass:[NSDictionary class]])
-                    break;
+                obj = [[(Class)_alert alloc] initWithDictionary:alert];
             }
-            // Found an array
-            if ([marker isKindOfClass:[NSArray class]])
-                responseArray = marker;
-            
-            // Or a single dictionary, which is to be discouraged, I think, but that's my personal preference.
-            // Regardless, we always provide an array of even single or zero objects to consumers.
-            else if ([marker isKindOfClass:[NSDictionary class]])
-                responseArray = @[marker];
+            if (obj)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                   
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationBLParseOperationAlertFound object:self userInfo:@{ @"alert" : obj}];
+                });
+            }
         }
-        // No path, or path found a dictionary instead of an array
-        // Eventually, we just need an array of dictionaries to make objects
-        if (!responseArray)
-            responseArray = @[_responseObject];
     }
-    // responseObject is already an array
-    else if ([_responseObject isKindOfClass:[NSArray class]])
-        responseArray = _responseObject;
-        
-    // An invalid object was delivered, but AFHTTPRequestOperation didn't fail
-    // could be a 204 No Content; or some other non-terminal error representing an empty set
-    else
-        responseArray = @[];
+    
+    if ([self traceEnabled])
+        NSLog(@"TraceEnabled: Alert Check Started");
     
     // Check cancellation again
     if ([self isCancelled])
@@ -117,9 +108,6 @@
             *_lock = NO;
         return;
     }
-    
-    if ([self traceEnabled])
-        NSLog(@"TraceEnabled: ParseOp: Found Objects");
     
     
     // Iterate and initialize models.  Models are <BLModel> so they conform to initWithDictionary:
@@ -195,4 +183,49 @@
         *_lock = NO;
 
 }
+
+- (NSArray *)arrayFromResponseObject: (id)responseObject path:(NSString *)path
+{
+    NSArray* responseArray = nil;
+    
+    if ([responseObject isKindOfClass:[NSDictionary class]])
+    {
+        // Is there a keyed subpath?  Path will terminate at the first array it hits
+        if (path)
+        {
+            NSArray* components = [_path componentsSeparatedByString:@"."];
+            id marker = nil;
+            for (NSString* item in components)
+            {
+                if ([components indexOfObject:item] == 0)
+                    marker = responseObject[item];
+                else
+                    marker = marker[item];
+                
+                if (![marker isKindOfClass:[NSDictionary class]])
+                    break;
+            }
+            // Found an array
+            if ([marker isKindOfClass:[NSArray class]])
+                responseArray = marker;
+            
+            // Or a single dictionary, which is to be discouraged, I think, but that's my personal preference.
+            // Regardless, we always provide an array of even single or zero objects to consumers.
+            else if ([marker isKindOfClass:[NSDictionary class]])
+                responseArray = @[marker];
+        }
+        // No path, or path found a dictionary instead of an array
+        // Eventually, we just need an array of dictionaries to make objects
+        if (!responseArray)
+            responseArray = @[responseObject];
+    }
+    // responseObject is already an array
+    else if ([responseObject isKindOfClass:[NSArray class]])
+        responseArray = responseObject;
+    else
+        responseArray = @[];
+    
+    return responseArray;
+}
+
 @end

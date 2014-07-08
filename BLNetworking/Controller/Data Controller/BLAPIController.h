@@ -67,7 +67,7 @@ typedef void (^apiFailureBlock)(NSError*);
  
 //  It is perfectly reasonable to configure this method with no parameters other than the success and/or failure blocks. It will give you blocks no matter if you give it nothing at all.
 */
-- (NSDictionary *)completionBlocksWithSuccess: (apiSuccessBlock)success failure: (apiFailureBlock)failure modelClass: (Class <BLModel>)model managedObjectContext:(NSManagedObjectContext *)moc successNotificationName: (NSString *)successNote failureNotificationName: (NSString *)failureNote atomicLock: (BOOL *)lock responsePath: (NSString *)path queue: (NSOperationQueue *)queue;
+- (NSDictionary *)completionBlocksWithSuccess: (apiSuccessBlock)success failure: (apiFailureBlock)failure modelClass: (Class <BLModel>)model managedObjectContext:(NSManagedObjectContext *)moc successNotificationName: (NSString *)successNote failureNotificationName: (NSString *)failureNote atomicLock: (BOOL *)lock responsePath: (NSString *)path alertPath: (NSString *)alertPath alertClass: (Class <BLModel>)alert queue: (NSOperationQueue *)queue;
 
 //
 // initWithBaseURL:sessionConfiguration: is the default initializer.  initWithBaseURL resolves there with a nil value for

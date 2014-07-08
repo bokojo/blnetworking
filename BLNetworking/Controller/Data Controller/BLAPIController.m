@@ -19,13 +19,13 @@
 
 #pragma mark - BLAPIController
 
-- (NSDictionary *)completionBlocksWithSuccess: (void(^)(NSArray*))success failure: (void(^)(NSError*))failure modelClass: (Class <BLModel>)model managedObjectContext:(NSManagedObjectContext *)moc successNotificationName: (NSString *)successNote failureNotificationName: (NSString *)failureNote atomicLock: (BOOL *)lock responsePath: (NSString *)path queue: (NSOperationQueue *)queue
+- (NSDictionary *)completionBlocksWithSuccess: (apiSuccessBlock)success failure: (apiFailureBlock)failure modelClass: (Class <BLModel>)model managedObjectContext:(NSManagedObjectContext *)moc successNotificationName: (NSString *)successNote failureNotificationName: (NSString *)failureNote atomicLock: (BOOL *)lock responsePath: (NSString *)path alertPath: (NSString *)alertPath alertClass: (Class <BLModel>)alert queue: (NSOperationQueue *)queue
 {
     
     afSuccessBlock newSuccess = ^(NSURLSessionDataTask *task, id responseObject) {
         
         
-        BLParseOperation* parseOp = [[BLParseOperation alloc] initWithResponseObject:responseObject path:path modelClass:model managedObjectContext:moc successNote:successNote successBlock:success lock:lock];
+        BLParseOperation* parseOp = [[BLParseOperation alloc] initWithResponseObject:responseObject path:path modelClass:model managedObjectContext:moc successNote:successNote successBlock:success lock:lock alertPath:alertPath alertClass:alert];
         
         if ([self traceEnabled])
         {
