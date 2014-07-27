@@ -1,14 +1,16 @@
 //
 //  BLModel.h
-//  Buffalo Ladybug, LLC
+//  Capsule
 //
-//  Created by Burton Lee on 4/9/13.
-//  Any use permitted.  Use as you will.
+//  Created by Burton Lee on 4/10/13.
+//  Copyright (c) 2014 Buffalo Ladybug LLC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "NSDictionary+StripNullObjects.h"
 @import CoreData;
+
+static NSString* const kBLModelAPITimeFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
 
 @protocol BLModel <NSObject>
 
@@ -18,7 +20,7 @@
 // Models are NSObjects
 - (instancetype)initWithDictionary: (NSDictionary *)dictionary;
 
-// Models are NSManagedObjects (CoreData); Implement main runloop entity-based creation under this method.  
+// Models are NSManagedObjects (CoreData); Implement main runloop entity-based creation under this method.
 - (instancetype)initWithDictionary: (NSDictionary *)dictionary intoManagedObjectContext:(NSManagedObjectContext *)moc;
 
 @end
@@ -29,65 +31,40 @@ static BOOL validateClass(Class _class, NSString* _key, NSDictionary* _dict, BOO
 static BOOL validateEnum(int _enumMax, NSString* _key, NSDictionary* _dict);
 static BOOL validateBool(NSString* _key, NSDictionary* _dict, BOOL _canBeNSStringOrNSNumber, BOOL _canBeNil);
 
-#pragma mark - Function Implementation
+static int const kBLModelIdentifierNone = 0;
+static NSString* const kBLModelUpdatedAtKey = @"updated_at";
+static NSString* const kBLModelCreatedAtKey = @"created_at";
+static NSString* const kBLModelIdentifierKey = @"id";
 
-// It's not a law that says you have to validate everything; suppressing unused warning on these functions.
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused"
 
-static BOOL validateClass(Class _class, NSString* _key, NSDictionary* _dict, BOOL _canBeNil)
-{
-    BOOL retVal = YES;
-    
-    id obj = _dict[_key];
-    if ((! obj || [obj isKindOfClass:[NSNull class]]) && !_canBeNil)
-       retVal = NO;
-    
-    else if (obj && ! [obj isKindOfClass: _class] && ! [obj isKindOfClass:[NSNull class]])
-        retVal = NO;
-    
-    return retVal;
-} 
+// Shared functions
+NSDate* dateWithAPITimeString(NSString *dString);
+NSString* APITimeStringWithDate(NSDate *date);
+id nilProtectedZeroValueNumber(NSNumber *number);
+NSString* cosmeticTimeSinceDate(NSDate *date);
 
-static BOOL validateEnum(int _enumMax, NSString* _key, NSDictionary* _dict)
-{
-    BOOL retVal = YES;
+@class BLModel;
+@protocol BLTestableModel <BLModel>
 
-    id obj = _dict[_key];
-    int value = -99; // error state
++ (NSArray *)apiKeys;
+- (NSDictionary *)jsonDictionary;
+- (NSDictionary *)postDictionary;
 
-    if (! [obj isKindOfClass:[NSNumber class]])
-        retVal = NO;
-    else
-        value = [obj intValue];
-    
-    if (retVal && value >= _enumMax)
-        retVal = NO;
-    
-    else if (retVal && value < 0)
-        retVal = NO;
-    
-    return retVal;
-}
++ (NSArray *)arrayOfDataWithJSONArray: (NSArray *)jsonArray;
 
-static BOOL validateBool(NSString* _key, NSDictionary* _dict, BOOL _canBeNSStringOrNSNumber, BOOL _canBeNil)
-{
-    BOOL retVal = NO;
-    
-    id obj = _dict[_key];
-    
-    if (_canBeNil && !obj)
-        retVal = YES;
-    
-    if ([obj isKindOfClass:[NSNumber class]] && ([obj intValue] == 0 || [obj intValue] == 1))
-        retVal = YES;
-    
-    else if (_canBeNSStringOrNSNumber && [obj isKindOfClass:[NSString class]] && ([obj isEqualToString:@"true"] || [obj isEqualToString:@"false"]))
-        retVal = YES;
-    
-    return retVal;
-}
+- (BOOL)isUpdatedRelativeToModel:(BLModel *)model;
+- (BOOL)arrayOfModels:(NSArray *)array isUpdatedRelativeToArray:(NSArray *)otherArray;
 
-#pragma clang diagnostic pop
+@end
+
+@interface BLModel : NSObject <BLTestableModel>
+
+@property (nonatomic, assign) BOOL isTemporary;
+@property (nonatomic, assign) NSUInteger identifier; // id
+@property (nonatomic, strong) NSDate* updatedAt;
+@property (nonatomic, strong) NSDate* createdAt;
+
+@end
+
 
 
