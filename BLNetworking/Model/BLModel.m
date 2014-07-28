@@ -11,63 +11,8 @@
 #pragma mark - Function Implementation
 
 // It's not a law that says you have to validate everything; suppressing unused warning on these functions.
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused"
 
-static BOOL validateClass(Class _class, NSString* _key, NSDictionary* _dict, BOOL _canBeNil)
-{
-    BOOL retVal = YES;
-    
-    id obj = _dict[_key];
-    if ((! obj || [obj isKindOfClass:[NSNull class]]) && !_canBeNil)
-        retVal = NO;
-    
-    else if (obj && ! [obj isKindOfClass: _class] && ! [obj isKindOfClass:[NSNull class]])
-        retVal = NO;
-    
-    return retVal;
-}
 
-static BOOL validateEnum(int _enumMax, NSString* _key, NSDictionary* _dict)
-{
-    BOOL retVal = YES;
-    
-    id obj = _dict[_key];
-    int value = -99; // error state
-    
-    if (! [obj isKindOfClass:[NSNumber class]])
-        retVal = NO;
-    else
-        value = [obj intValue];
-    
-    if (retVal && value >= _enumMax)
-        retVal = NO;
-    
-    else if (retVal && value < 0)
-        retVal = NO;
-    
-    return retVal;
-}
-
-static BOOL validateBool(NSString* _key, NSDictionary* _dict, BOOL _canBeNSStringOrNSNumber, BOOL _canBeNil)
-{
-    BOOL retVal = NO;
-    
-    id obj = _dict[_key];
-    
-    if (_canBeNil && !obj)
-        retVal = YES;
-    
-    if ([obj isKindOfClass:[NSNumber class]] && ([obj intValue] == 0 || [obj intValue] == 1))
-        retVal = YES;
-    
-    else if (_canBeNSStringOrNSNumber && [obj isKindOfClass:[NSString class]] && ([obj isEqualToString:@"true"] || [obj isEqualToString:@"false"]))
-        retVal = YES;
-    
-    return retVal;
-}
-
-#pragma clang diagnostic pop
 
 
 NSDate* dateWithAPITimeString(NSString *dString)
@@ -204,34 +149,34 @@ id nilProtectedZeroValueNumber(NSNumber *number)
 {
     NSMutableDictionary* outDict = [NSMutableDictionary dictionary];
     
-    if (!self.isTemporaryID && self.identifier)
+    if (!self.isTemporary && self.identifier)
         [outDict addEntriesFromDictionary:@{ kBLModelIdentifierKey : nilProtectedValueFromObject(@(self.identifier)) }];
     
     return [outDict copy];
 }
 
-- (NSArray *)differenceArrayAgainstModel: (BLModel *)model
-{
-    NSAssert([model isKindOfClass:[self class]], @"Model mistmatch! %@ %@", [self class], [model class]);
-    
-    NSDictionary* myPostDict = [self postDictionary];
-    NSDictionary* modelPostDict = [model postDictionary];
-    
-    NSMutableArray* diff = [NSMutableArray array];
-    
-    for (NSString* key in myPostDict)
-    {
-        if (![[modelPostDict valueForKey:key] isEqual:[myPostDict valueForKey:key]])
-            [diff addObject: @{ kBLModelDifferenceKeyKey : key,
-                                kBLModelDifferenceKeyModelValue : nilProtectedValueFromObject([modelPostDict valueForKey:key]),
-                                kBLModelDifferenceKeySelfValue :  nilProtectedValueFromObject([myPostDict valueForKey:key]) }];
-    }
-    
-    if (![diff count])
-        diff = nil;
-    
-    return [diff copy];
-}
+//- (NSArray *)differenceArrayAgainstModel: (BLModel *)model
+//{
+//    NSAssert([model isKindOfClass:[self class]], @"Model mistmatch! %@ %@", [self class], [model class]);
+//    
+//    NSDictionary* myPostDict = [self postDictionary];
+//    NSDictionary* modelPostDict = [model postDictionary];
+//    
+//    NSMutableArray* diff = [NSMutableArray array];
+//    
+//    for (NSString* key in myPostDict)
+//    {
+//        if (![[modelPostDict valueForKey:key] isEqual:[myPostDict valueForKey:key]])
+//            [diff addObject: @{ kBLModelDifferenceKeyKey : key,
+//                                kBLModelDifferenceKeyModelValue : nilProtectedValueFromObject([modelPostDict valueForKey:key]),
+//                                kBLModelDifferenceKeySelfValue :  nilProtectedValueFromObject([myPostDict valueForKey:key]) }];
+//    }
+//    
+//    if (![diff count])
+//        diff = nil;
+//    
+//    return [diff copy];
+//}
 
 - (NSDictionary *)differenceDictionaryAgainstModel: (BLModel *)model
 {

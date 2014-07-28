@@ -27,9 +27,67 @@ static NSString* const kBLModelAPITimeFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
 
 #pragma mark - Function Declarations
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused"
+
 static BOOL validateClass(Class _class, NSString* _key, NSDictionary* _dict, BOOL _canBeNil);
 static BOOL validateEnum(int _enumMax, NSString* _key, NSDictionary* _dict);
 static BOOL validateBool(NSString* _key, NSDictionary* _dict, BOOL _canBeNSStringOrNSNumber, BOOL _canBeNil);
+
+static BOOL validateClass(Class _class, NSString* _key, NSDictionary* _dict, BOOL _canBeNil)
+{
+    BOOL retVal = YES;
+    
+    id obj = _dict[_key];
+    if ((! obj || [obj isKindOfClass:[NSNull class]]) && !_canBeNil)
+        retVal = NO;
+    
+    else if (obj && ! [obj isKindOfClass: _class] && ! [obj isKindOfClass:[NSNull class]])
+        retVal = NO;
+    
+    return retVal;
+}
+
+static BOOL validateEnum(int _enumMax, NSString* _key, NSDictionary* _dict)
+{
+    BOOL retVal = YES;
+    
+    id obj = _dict[_key];
+    int value = -99; // error state
+    
+    if (! [obj isKindOfClass:[NSNumber class]])
+        retVal = NO;
+    else
+        value = [obj intValue];
+    
+    if (retVal && value >= _enumMax)
+        retVal = NO;
+    
+    else if (retVal && value < 0)
+        retVal = NO;
+    
+    return retVal;
+}
+
+static BOOL validateBool(NSString* _key, NSDictionary* _dict, BOOL _canBeNSStringOrNSNumber, BOOL _canBeNil)
+{
+    BOOL retVal = NO;
+    
+    id obj = _dict[_key];
+    
+    if (_canBeNil && !obj)
+        retVal = YES;
+    
+    if ([obj isKindOfClass:[NSNumber class]] && ([obj intValue] == 0 || [obj intValue] == 1))
+        retVal = YES;
+    
+    else if (_canBeNSStringOrNSNumber && [obj isKindOfClass:[NSString class]] && ([obj isEqualToString:@"true"] || [obj isEqualToString:@"false"]))
+        retVal = YES;
+    
+    return retVal;
+}
+
+#pragma clang diagnostic pop
 
 static int const kBLModelIdentifierNone = 0;
 static NSString* const kBLModelUpdatedAtKey = @"updated_at";

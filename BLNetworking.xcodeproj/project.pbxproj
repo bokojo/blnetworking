@@ -19,6 +19,7 @@
 		B420B1D2180EFF8700145052 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B420B1D1180EFF8700145052 /* CoreData.framework */; };
 		B420B1DB180F005000145052 /* NSDictionary+StripNullObjectsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B420B1DA180F005000145052 /* NSDictionary+StripNullObjectsTests.m */; };
 		B420B1DC180F03B200145052 /* NSDictionary+StripNullObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = B420B1C2180EFEEF00145052 /* NSDictionary+StripNullObjects.m */; };
+		B47031B4198698F300F6969C /* BLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B47031B3198698F300F6969C /* BLModel.m */; };
 		B4CA34CB19197D7E0063B97A /* NSDictionary+StripNullObjects.h in Headers */ = {isa = PBXBuildFile; fileRef = B420B1C1180EFEEF00145052 /* NSDictionary+StripNullObjects.h */; };
 		B4CA34CC19197D7E0063B97A /* BLAPIController.h in Headers */ = {isa = PBXBuildFile; fileRef = B420B1C5180EFEEF00145052 /* BLAPIController.h */; };
 		B4CA34CD19197D7E0063B97A /* BLJSONResponseSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = B420B1C7180EFEEF00145052 /* BLJSONResponseSerializer.h */; };
@@ -65,6 +66,7 @@
 		B420B1CC180EFEEF00145052 /* BLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLModel.h; sourceTree = "<group>"; };
 		B420B1D1180EFF8700145052 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B420B1DA180F005000145052 /* NSDictionary+StripNullObjectsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+StripNullObjectsTests.m"; sourceTree = "<group>"; };
+		B47031B3198698F300F6969C /* BLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLModel.m; sourceTree = "<group>"; };
 		B4A7FE9B18105CCD00BE2934 /* BLNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BLNetworking.h; sourceTree = "<group>"; };
 		B4F02F34181064A200C25606 /* BLMockModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLMockModel.h; sourceTree = "<group>"; };
 		B4F02F35181064A200C25606 /* BLModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLModelTests.m; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 		B420B1CB180EFEEF00145052 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B47031B3198698F300F6969C /* BLModel.m */,
 				B420B1CC180EFEEF00145052 /* BLModel.h */,
 			);
 			path = Model;
@@ -349,6 +352,7 @@
 			files = (
 				B420B1CE180EFEEF00145052 /* BLAPIController.m in Sources */,
 				B420B1D0180EFEEF00145052 /* BLParseOperation.m in Sources */,
+				B47031B4198698F300F6969C /* BLModel.m in Sources */,
 				B420B1CF180EFEEF00145052 /* BLJSONResponseSerializer.m in Sources */,
 				B420B1CD180EFEEF00145052 /* NSDictionary+StripNullObjects.m in Sources */,
 			);
